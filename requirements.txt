@@ -26,6 +26,7 @@ pyexcel==0.7.0
 pyexcel-io==0.6.6
 pyexcel-xlsx==0.6.0
 PySocks==1.7.1
+PyVirtualDisplay==3.0
 requests==2.31.0
 requests-toolbelt==1.0.0
 selenium==4.15.2

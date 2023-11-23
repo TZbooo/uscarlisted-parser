@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from pydantic import BaseModel
+from pyvirtualdisplay import Display
 
 
 class Car(BaseModel):
@@ -30,7 +31,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[1:501]:
+    for row in list(table)[383:501]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -68,10 +69,10 @@ def main() -> None:
             'user_pass'
         ).send_keys('uscars-2023' + Keys.ENTER)
         time.sleep(1)
+        driver.get('http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
 
         for car in car_list:
             print(f'{car.id=}')
-            driver.get('http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
             driver.find_element(
                 By.CSS_SELECTOR,
                 'h1[aria-label="Добавить заголовок"]'
@@ -92,7 +93,7 @@ def main() -> None:
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(10)
+            time.sleep(15)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
@@ -193,10 +194,17 @@ def main() -> None:
                         '.editor-post-publish-button__button'
                     )[i]
                 )
-            time.sleep(0.2)
+            driver.refresh()
+            driver.switch_to.alert.accept()
     finally:
         driver.quit()
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        display = Display(size=(1920, 1080))
+        display.start()
+        print('DISPLAY START')
+        main()
+    finally:
+        display.stop()
