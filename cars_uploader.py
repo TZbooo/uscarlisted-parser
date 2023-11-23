@@ -31,7 +31,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[383:501]:
+    for row in list(table)[1:501]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -54,7 +54,6 @@ with open('table.csv', 'r') as csv_file:
 def main() -> None:
     try:
         driver = uc.Chrome(
-            user_data_dir='selenium',
             driver_executable_path='./chromedriver',
             version_main=117,
             no_sandbox=True
@@ -93,7 +92,7 @@ def main() -> None:
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(15)
+            time.sleep(30)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
