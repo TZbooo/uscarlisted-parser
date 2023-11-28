@@ -58,7 +58,7 @@ def main() -> None:
             version_main=117,
             no_sandbox=True
         )
-        driver.get('http://easy2ltq.beget.tech/wp-admin/')
+        driver.get('http://83.147.247.176/wordpress/wp-admin/')
         driver.find_element(
             By.ID,
             'user_login'
@@ -68,7 +68,7 @@ def main() -> None:
             'user_pass'
         ).send_keys('uscars-2023' + Keys.ENTER)
         time.sleep(1)
-        driver.get('http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
+        driver.get('http://83.147.247.176/wordpress/wp-admin/post-new.php?post_type=equipment')
 
         for car in car_list:
             print(f'{car.id=}')
