@@ -54,6 +54,9 @@ with open('table.csv', 'r') as csv_file:
 def main() -> None:
     try:
         driver = uc.Chrome(
+            # driver_executable_path='./chromedriver',
+            # version_main=117,
+            user_data_dir='selenium',
             no_sandbox=True
         )
         driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin')
@@ -205,3 +208,4 @@ if __name__ == '__main__':
         main()
     finally:
         display.stop()
+        pass
