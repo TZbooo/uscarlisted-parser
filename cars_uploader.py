@@ -76,10 +76,6 @@ def main() -> None:
         time.sleep(1)
 
         for car in car_list:
-            try:
-                driver.switch_to.alert.accept()
-            except NoAlertPresentException:
-                pass
             print(f'{car.id=}')
             driver.find_element(
                 By.CSS_SELECTOR,
@@ -101,7 +97,7 @@ def main() -> None:
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(25)
+            time.sleep(30)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
@@ -204,6 +200,10 @@ def main() -> None:
                 )
             time.sleep(2.5)
             driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin/post-new.php?post_type=equipment')
+            try:
+                driver.switch_to.alert.accept()
+            except NoAlertPresentException:
+                pass
     finally:
         driver.quit()
 
