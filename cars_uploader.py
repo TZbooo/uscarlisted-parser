@@ -76,6 +76,10 @@ def main() -> None:
         time.sleep(1)
 
         for car in car_list:
+            try:
+                driver.switch_to.alert.accept()
+            except NoAlertPresentException:
+                pass
             print(f'{car.id=}')
             driver.find_element(
                 By.CSS_SELECTOR,
