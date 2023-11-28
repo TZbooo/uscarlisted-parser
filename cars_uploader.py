@@ -54,8 +54,6 @@ with open('table.csv', 'r') as csv_file:
 def main() -> None:
     try:
         driver = uc.Chrome(
-            driver_executable_path='./chromedriver',
-            version_main=117,
             no_sandbox=True
         )
         driver.get('http://83.147.247.176/wordpress/wp-admin/')
