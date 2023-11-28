@@ -4,7 +4,7 @@ import time
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
 from pydantic import BaseModel
 from pyvirtualdisplay import Display
 
@@ -97,7 +97,7 @@ def main() -> None:
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(30)
+            time.sleep(28)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
@@ -198,8 +198,8 @@ def main() -> None:
                         '.editor-post-publish-button__button'
                     )[i]
                 )
-            driver.refresh()
-            driver.switch_to.alert.accept()
+            time.sleep(2)
+            driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin/post-new.php?post_type=equipment')
     finally:
         driver.quit()
 
