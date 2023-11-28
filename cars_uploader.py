@@ -90,14 +90,14 @@ def main() -> None:
             )
 
             car_images = '\n'.join([
-                f'/home/helloworldbooo/Documents/Projects/uscarlisted-parser/images/{car.id}/{i}.jpg'
+                f'/root/images/{car.id}/{i}.jpg'
                 for i in range(5)
             ])
             driver.find_element(
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(35)
+            time.sleep(30)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
