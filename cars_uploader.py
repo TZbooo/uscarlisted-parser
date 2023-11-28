@@ -56,7 +56,6 @@ def main() -> None:
         driver = uc.Chrome(
             # driver_executable_path='./chromedriver',
             # version_main=117,
-            user_data_dir='selenium',
             no_sandbox=True
         )
         driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin')
@@ -70,6 +69,11 @@ def main() -> None:
         ).send_keys('uscars-2023' + Keys.ENTER)
         time.sleep(1)
         driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin/post-new.php?post_type=equipment')
+        driver.find_element(
+            By.ID,
+            'user_pass'
+        ).send_keys('uscars-2023' + Keys.ENTER)
+        time.sleep(1)
 
         for car in car_list:
             print(f'{car.id=}')
