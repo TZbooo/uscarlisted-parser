@@ -97,7 +97,7 @@ def main() -> None:
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(40)
+            time.sleep(25)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
