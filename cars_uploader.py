@@ -55,7 +55,8 @@ with open('table.csv', 'r') as csv_file:
 def main() -> None:
     try:
         driver = uc.Chrome(no_sandbox=True)
-        driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin')
+        driver.implicitly_wait(10)
+        driver.get('http://easy2ltq.beget.tech/wp-admin/')
         driver.find_element(
             By.ID,
             'user_login'
@@ -65,19 +66,17 @@ def main() -> None:
             'user_pass'
         ).send_keys('uscars-2023' + Keys.ENTER)
         time.sleep(1)
-        driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin/post-new.php?post_type=equipment')
-        driver.find_element(
-            By.ID,
-            'user_pass'
-        ).send_keys('uscars-2023' + Keys.ENTER)
-        time.sleep(1)
+        driver.get('http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
 
         for car in car_list:
             print(f'{car.id=}')
-            driver.find_element(
-                By.CSS_SELECTOR,
-                'h1[aria-label="Добавить заголовок"]'
-            ).send_keys(car.title)
+            try:
+                driver.find_element(
+                    By.CSS_SELECTOR,
+                    'h1[aria-label="Добавить заголовок"]'
+                ).send_keys(car.title)
+            except NoSuchElementException:
+                continue
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
@@ -196,11 +195,12 @@ def main() -> None:
                     )[i]
                 )
             time.sleep(2.5)
-            driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin/post-new.php?post_type=equipment')
+            driver.get('http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
             try:
                 driver.switch_to.alert.accept()
             except NoAlertPresentException:
                 pass
+            time.sleep(1)
     finally:
         driver.quit()
 
