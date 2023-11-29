@@ -1,3 +1,4 @@
+import os
 import csv
 import time
 
@@ -53,11 +54,7 @@ with open('table.csv', 'r') as csv_file:
 
 def main() -> None:
     try:
-        driver = uc.Chrome(
-            # driver_executable_path='./chromedriver',
-            # version_main=117,
-            no_sandbox=True
-        )
+        driver = uc.Chrome(no_sandbox=True)
         driver.get('https://cv39997-wordpress-kn6pi.tw1.ru/wp-admin')
         driver.find_element(
             By.ID,
@@ -90,14 +87,14 @@ def main() -> None:
             )
 
             car_images = '\n'.join([
-                f'/root/images/{car.id}/{i}.jpg'
+                f'{os.getcwd()}/images/{car.id}/{i}.jpg'
                 for i in range(5)
             ])
             driver.find_element(
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(40)
+            time.sleep(30)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
