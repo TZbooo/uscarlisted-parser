@@ -32,7 +32,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[740:]:
+    for row in list(table)[1584:]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -95,7 +95,7 @@ def main() -> None:
                 By.CSS_SELECTOR,
                 'input[type="file"]'
             ).send_keys(car_images)
-            time.sleep(30)
+            time.sleep(40)
             driver.execute_script(
                 'arguments[0].click();',
                 driver.find_element(
