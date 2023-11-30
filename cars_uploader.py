@@ -21,7 +21,7 @@ class Car(BaseModel):
     model: str
     mileage: str
     fuel_type: str
-    year: int
+    year: str
     transmission: str
     exterior_color: str
     history: str
@@ -33,7 +33,6 @@ with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
     for row in list(table)[501:]:
-        print(row, row[10])
         car_list.append(Car(
             id=row[0],
             title=row[1],
