@@ -32,7 +32,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[501:]:
+    for row in list(table)[740:]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -167,10 +167,15 @@ def main() -> None:
                     '.acf-tab-group li + li + li > a'
                 )
             )
-            driver.find_element(
+            description_textarea = driver.find_element(
                 By.CSS_SELECTOR,
                 '.acf-fields .acf-field:nth-child(22) textarea'
-            ).send_keys(car.description)
+            )
+            driver.execute_script(
+                'arguments[0].value = arguments[1]',
+                description_textarea,
+                car.description
+            )
 
             try:
                 driver.execute_script(
