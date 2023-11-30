@@ -33,6 +33,7 @@ with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
     for row in list(table)[501:]:
+        print(row, row[10])
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -67,7 +68,8 @@ def main() -> None:
         ).send_keys('uscars-2023' + Keys.ENTER)
         time.sleep(1)
         driver.get(
-            'http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
+            'http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment'
+        )
 
         for car in car_list:
             print(f'{car.id=}')
@@ -197,7 +199,8 @@ def main() -> None:
                 )
             time.sleep(2.5)
             driver.get(
-                'http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment')
+                'http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment'
+            )
             try:
                 driver.switch_to.alert.accept()
             except NoAlertPresentException:
