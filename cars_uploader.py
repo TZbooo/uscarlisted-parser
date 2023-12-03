@@ -32,7 +32,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[2175:]:
+    for row in list(table)[5188:]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
