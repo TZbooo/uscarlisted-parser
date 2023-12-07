@@ -32,7 +32,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[5189:]:
+    for row in list(table)[8914:]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -54,7 +54,11 @@ with open('table.csv', 'r') as csv_file:
 
 def main() -> None:
     try:
-        driver = uc.Chrome(no_sandbox=True)
+        driver = uc.Chrome(
+            no_sandbox=True,
+            use_subprocess=True,
+            driver_executable_path='./chromedriver'
+        )
         driver.implicitly_wait(10)
         driver.get('http://easy2ltq.beget.tech/wp-admin/')
         driver.find_element(
