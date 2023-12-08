@@ -5,7 +5,7 @@ import time
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, WebDriverException
 from pydantic import BaseModel
 from pyvirtualdisplay import Display
 
@@ -32,7 +32,7 @@ car_list = []
 with open('table.csv', 'r') as csv_file:
     table = csv.reader(csv_file)
 
-    for row in list(table)[8914:]:
+    for row in list(table)[9697:]:
         car_list.append(Car(
             id=row[0],
             title=row[1],
@@ -206,9 +206,14 @@ def main() -> None:
                     )[i]
                 )
             time.sleep(2.5)
-            driver.get(
-                'http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment'
-            )
+            for i in range(5):
+                try:
+                    driver.get(
+                        'http://easy2ltq.beget.tech/wp-admin/post-new.php?post_type=equipment'
+                    )
+                    break
+                except WebDriverException:
+                    pass
             try:
                 driver.switch_to.alert.accept()
             except NoAlertPresentException:
